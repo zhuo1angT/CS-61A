@@ -411,7 +411,33 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 6  # Replace this statement
+    score_of_roll_zero = free_bacon(opponent_score)
+    if score_of_roll_zero + score >= 100:
+        return 0
+    elif score > 97:
+        return 1
+    elif score > 93:
+        return 2
+    elif score > 88:
+        return 3
+    elif score > 82:
+        return 4
+    elif score > 77:
+        return 5
+
+    if opponent_score > 83 and score < 65:
+        return 10
+    
+    if (score + score_of_roll_zero + 17 < opponent_score) and is_swap(score + 1, opponent_score):
+        return 10
+    elif opponent_score - score > 14:
+        return 9
+    elif opponent_score - score > 11:
+        return 8
+    elif opponent_score - score > 8:
+        return 7
+    else:
+        return 6
     # END PROBLEM 12
 
 ##########################
