@@ -156,7 +156,7 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
-    # "*** YOUR CODE HERE ***"
+        "*** YOUR CODE HERE ***"
         say = say(score0, score1)
        
     # END PROBLEM 6
@@ -297,6 +297,13 @@ def make_averaged(g, num_samples=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def avg_function(*arg):
+        sum, i = 0, 0
+        while i < num_samples:
+            sum += g(*arg)
+            i += 1
+        return sum / num_samples
+    return avg_function
     # END PROBLEM 8
 
 
@@ -311,6 +318,18 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    i = 1
+    max_avg_value, max_scoring_num = 0, 0
+
+    avg_function = make_averaged(roll_dice, num_samples)
+
+    while i <= 10:
+        avg_value = avg_function(i, dice)
+        if avg_value > max_avg_value:
+            max_scoring_num = i
+            max_avg_value = avg_value
+        i += 1
+    return max_scoring_num
     # END PROBLEM 9
 
 
@@ -360,7 +379,12 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=6):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Replace this statement
+    
+    score_of_roll_zero = free_bacon(opponent_score)
+    if score_of_roll_zero >= margin:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
@@ -370,7 +394,14 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=6):
     non-beneficial swap. Otherwise, it rolls NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 6  # Replace this statement
+    
+    score_of_roll_zero = free_bacon(opponent_score)
+    if (score + score_of_roll_zero < opponent_score) and is_swap(score + score_of_roll_zero, opponent_score):
+        return 0
+    elif (score_of_roll_zero >= margin) and ((is_swap(score + score_of_roll_zero, opponent_score) and (score + score_of_roll_zero > opponent_score)) == False):
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 11
 
 
