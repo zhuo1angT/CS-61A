@@ -23,3 +23,5 @@ Tried the optional Problem no.12
 Just reached the limit to get full credit.
 
 ---
+
+HW02 finished. 02/29/20
