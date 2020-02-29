@@ -24,4 +24,8 @@ Just reached the limit to get full credit.
 
 ---
 
-HW02 finished. 02/29/20
+HW02  finished. 02/29/20
+
+Lab02 finished. 02/29/20
+
+
